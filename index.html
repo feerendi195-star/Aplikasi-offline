@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aplikasi Dagang Offline</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body">
+
+    <!-- =========================
+         TOMBOL MENU HP
+    ========================== -->
+
+    <button
+        class="menu-btn"
+        id="menuBtn"
+        type="button"
+        onclick="toggleSidebar()"
+    >
+        ☰
+    </button>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside id="sidebar">
+
+        <h2>MENU</h2>
+
+        <button type="button" onclick="showPage('dashboard')">
+            📊 Dashboard
+        </button>
+
+        <button type="button" onclick="showPage('belanja')">
+            🛒 Daftar Belanja
+        </button>
+
+        <button type="button" onclick="showPage('titipan')">
+            👤 Titipan Pelanggan
+        </button>
+
+        <button type="button" onclick="showPage('operasional')">
+            💸 Biaya Operasional
+        </button>
+
+        <button type="button" onclick="showPage('hutang')">
+            🤝 Hutang
+        </button>
+
+        <button type="button" onclick="showPage('pribadi')">
+            🏠 Pengeluaran Pribadi
+        </button>
+
+        <button type="button" onclick="showPage('barang')">
+            📦 Daftar Barang
+        </button>
+
+        <button type="button" onclick="showPage('laporan')">
+            📊 Laporan
+        </button>
+
+        <button type="button" onclick="showPage('pengaturan')">
+            ⚙️ Pengaturan
+        </button>
+
+    </aside>
+
+
+    <!-- =========================
+         KONTEN UTAMA
+    ========================== -->
+
+    <main>
+
+        <!-- =========================
+             DASHBOARD
+        ========================== -->
+
+        <section id="dashboard" class="page active">
+
+            <div class="header">
+                <h1>Dashboard</h1>
+            </div>
+
+            <div class="modal-card">
+
+                <div>
+                    <span>Modal Awal</span>
+
+                    <strong id="modalDisplay">
+                        Rp 0
+                    </strong>
+                </div>
+
+                <button
+                    type="button"
+                    onclick="inputModal()"
+                >
+                    ✏️ Ubah
+                </button>
+
+            </div>
+
+
+            <div class="summary-container">
+
+                <div class="summary-card">
+                    <span>Belanja</span>
+
+                    <strong id="dashboardBelanja">
+                        Rp 0
+                    </strong>
+                </div>
+
+                <div class="summary-card">
+                    <span>Pengeluaran</span>
+
+                    <strong id="dashboardPengeluaran">
+                        Rp 0
+                    </strong>
+                </div>
+
+                <div class="summary-card">
+                    <span>Hutang</span>
+
+                    <strong id="dashboardHutang">
+                        Rp 0
+                    </strong>
+                </div>
+
+                <div class="summary-card">
+                    <span>Saldo</span>
+
+                    <strong id="saldoDisplay">
+                        Rp 0
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             DAFTAR BELANJA
+        ========================== -->
+
+        <section id="belanja" class="page">
+
+            <div class="header">
+                <h1>Daftar Belanja</h1>
+            </div>
+
+            <button
+                class="add-btn"
+                type="button"
+                onclick="tambahBelanja()"
+            >
+                + Tambah Belanja
+            </button>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>No</th>
+                            <th>Barang</th>
+                            <th>Jumlah</th>
+                            <th>Harga</th>
+                            <th>Total</th>
+                            <th>Aksi</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tabelBelanja"></tbody>
+
+                </table>
+
+            </div>
+
+            <div class="modal-card">
+
+                <div>
+                    <span>Total Belanja</span>
+
+                    <strong id="totalBelanja">
+                        Rp 0
+                    </strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TITIPAN
+        ========================== -->
+
+        <section id="titipan" class="page">
+
+            <div class="header">
+                <h1>Titipan Pelanggan</h1>
+            </div>
+
+            <button
+                class="add-btn"
+                type="button"
+                onclick="tambahTitipan()"
+            >
+                + Tambah Titipan
+            </button>
+
+            <div class="table-container">
+
+                <table class="tabel-titipan">
+
+                    <thead>
+
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Uang Titipan</th>
+                            <th>Barang</th>
+                            <th>Qty</th>
+                            <th>Satuan</th>
+                            <th>Harga</th>
+                            <th>Total</th>
+                            <th>Sisa</th>
+                            <th>Aksi</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tabelTitipan"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             BIAYA OPERASIONAL
+        ========================== -->
+
+        <section id="operasional" class="page">
+
+            <div class="header">
+                <h1>Biaya Operasional</h1>
+            </div>
+
+            <p>
+                Halaman biaya operasional akan dibuat
+                pada tahap berikutnya.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             HUTANG
+        ========================== -->
+
+        <section id="hutang" class="page">
+
+            <div class="header">
+                <h1>Hutang</h1>
+            </div>
+
+            <button
+                class="add-btn"
+                type="button"
+                onclick="tambahHutangManual()"
+            >
+                + Tambah Hutang
+            </button>
+
+
+            <div class="summary-container">
+
+                <div class="summary-card">
+
+                    <span>Total Hutang</span>
+
+                    <strong id="totalHutangDisplay">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <span>Sudah Dibayar</span>
+
+                    <strong id="totalDibayarDisplay">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <span>Sisa Hutang</span>
+
+                    <strong id="totalSisaHutangDisplay">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Keterangan</th>
+                            <th>Hutang</th>
+                            <th>Dibayar</th>
+                            <th>Sisa</th>
+                            <th>Sumber</th>
+                            <th>Aksi</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tabelHutang"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PENGELUARAN PRIBADI
+        ========================== -->
+
+        <section id="pribadi" class="page">
+
+            <div class="header">
+                <h1>Pengeluaran Pribadi</h1>
+            </div>
+
+            <p>
+                Halaman pengeluaran pribadi akan dibuat
+                pada tahap berikutnya.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             DAFTAR BARANG
+        ========================== -->
+
+        <section id="barang" class="page">
+
+            <div class="header">
+                <h1>Daftar Barang</h1>
+            </div>
+
+            <button
+                class="add-btn"
+                type="button"
+                onclick="tambahBarang()"
+            >
+                + Tambah Barang
+            </button>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Barang</th>
+                            <th>Stok</th>
+                            <th>Harga</th>
+                            <th>Aksi</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tabelBarang"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             LAPORAN
+        ========================== -->
+
+        <section id="laporan" class="page">
+
+            <div class="header">
+                <h1>Laporan</h1>
+            </div>
+
+            <div class="summary-container">
+
+                <div class="summary-card">
+
+                    <span>Modal Awal</span>
+
+                    <strong id="laporanModal">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <span>Total Belanja</span>
+
+                    <strong id="laporanBelanja">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <span>Biaya Operasional</span>
+
+                    <strong id="laporanOperasional">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+                <div class="summary-card">
+
+                    <span>Pengeluaran Pribadi</span>
+
+                    <strong id="laporanPribadi">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-card">
+
+                <div>
+
+                    <span>Saldo Akhir</span>
+
+                    <strong id="laporanSaldo">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PENGATURAN
+        ========================== -->
+
+        <section id="pengaturan" class="page">
+
+            <div class="header">
+                <h1>Pengaturan</h1>
+            </div>
+
+            <p>
+                Pengaturan aplikasi akan dibuat
+                pada tahap berikutnya.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================================================
+         MODAL TAMBAH / EDIT BELANJA
+    ================================================== -->
+
+    <div
+        id="modalBelanja"
+        class="modal-overlay"
+    >
+
+        <div class="modal-form">
+
+            <div class="modal-header">
+
+                <h2 id="judulModalBelanja">
+                    Tambah Belanja
+                </h2>
+
+                <button
+                    type="button"
+                    onclick="tutupModalBelanja()"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="namaBelanja">
+                    Nama Barang
+                </label>
+
+                <input
+                    type="text"
+                    id="namaBelanja"
+                    placeholder="Contoh: Beras"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="jumlahBelanja">
+                    Jumlah
+                </label>
+
+                <input
+                    type="number"
+                    id="jumlahBelanja"
+                    min="1"
+                    placeholder="Contoh: 2"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="hargaBelanja">
+                    Harga per Barang
+                </label>
+
+                <input
+                    type="number"
+                    id="hargaBelanja"
+                    min="1"
+                    placeholder="Contoh: 50000"
+                >
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-batal"
+                    onclick="tutupModalBelanja()"
+                >
+                    Batal
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-simpan"
+                    onclick="simpanBelanja()"
+                >
+                    Simpan
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         MODAL TITIPAN
+    ================================================== -->
+
+    <div
+        id="modalTitipan"
+        class="modal-overlay"
+    >
+
+        <div class="modal-form modal-titipan-form">
+
+            <div class="modal-header">
+
+                <h2 id="judulModalTitipan">
+                    Tambah Titipan
+                </h2>
+
+                <button
+                    type="button"
+                    onclick="tutupModalTitipan()"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="namaPelanggan">
+                    Nama Pelanggan
+                </label>
+
+                <input
+                    type="text"
+                    id="namaPelanggan"
+                    placeholder="Contoh: Budi"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="uangTitipan">
+                    Uang Titipan
+                </label>
+
+                <input
+                    type="number"
+                    id="uangTitipan"
+                    min="0"
+                    placeholder="Contoh: 100000"
+                >
+
+            </div>
+
+
+            <hr>
+
+
+            <h3 class="judul-barang-titipan">
+                Barang Titipan
+            </h3>
+
+
+            <div class="form-group">
+
+                <label for="barangTitipan">
+                    Barang
+                </label>
+
+                <input
+                    type="text"
+                    id="barangTitipan"
+                    placeholder="Contoh: Beras"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="qtyTitipan">
+                    Qty
+                </label>
+
+                <input
+                    type="number"
+                    id="qtyTitipan"
+                    min="1"
+                    placeholder="Contoh: 2"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="satuanTitipan">
+                    Satuan
+                </label>
+
+                <input
+                    type="text"
+                    id="satuanTitipan"
+                    placeholder="Contoh: kg"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="hargaTitipan">
+                    Harga
+                </label>
+
+                <input
+                    type="number"
+                    id="hargaTitipan"
+                    min="1"
+                    placeholder="Contoh: 30000"
+                >
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn-tambah-barang"
+                onclick="tambahBarangTitipan()"
+            >
+                + Tambah Barang
+            </button>
+
+
+            <div class="barang-form-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Barang</th>
+                            <th>Qty</th>
+                            <th>Satuan</th>
+                            <th>Harga</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="daftarBarangTitipanForm"></tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="total-titipan-form">
+
+                <div>
+
+                    <span>Total Belanja</span>
+
+                    <strong id="totalTitipanForm">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    <span>Uang Titipan</span>
+
+                    <strong id="uangTitipanForm">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    <span>Sisa / Hutang</span>
+
+                    <strong id="sisaTitipanForm">
+                        Rp 0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-batal"
+                    onclick="tutupModalTitipan()"
+                >
+                    Batal
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-simpan"
+                    onclick="simpanTitipan()"
+                >
+                    Simpan
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         MODAL HUTANG
+         HANYA SATU
+    ================================================== -->
+
+    <div
+        id="modalHutang"
+        class="modal-overlay"
+    >
+
+        <div class="modal-form">
+
+            <div class="modal-header">
+
+                <h2 id="judulModalHutang">
+                    Tambah Hutang
+                </h2>
+
+                <button
+                    type="button"
+                    onclick="tutupModalHutang()"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="namaHutang">
+                    Nama
+                </label>
+
+                <input
+                    type="text"
+                    id="namaHutang"
+                    placeholder="Contoh: Budi"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="keteranganHutang">
+                    Keterangan
+                </label>
+
+                <input
+                    type="text"
+                    id="keteranganHutang"
+                    placeholder="Contoh: Hutang belanja"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="jumlahHutang">
+                    Jumlah Hutang
+                </label>
+
+                <input
+                    type="number"
+                    id="jumlahHutang"
+                    min="1"
+                    placeholder="Contoh: 100000"
+                >
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-batal"
+                    onclick="tutupModalHutang()"
+                >
+                    Batal
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-simpan"
+                    onclick="simpanHutangManual()"
+                >
+                    Simpan
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
